@@ -41,7 +41,7 @@ const Mutation = new GraphQLObjectType({
                     createdOn : getCurrentDateTime()
                 });
                 updateFile(taskData);
-                return args;
+                return taskData[taskData.length - 1];
             }
         },
         updateTask : {
