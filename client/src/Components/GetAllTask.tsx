@@ -13,7 +13,7 @@ function GetAllTask()
     useEffect(()=>{
         if(data) setTasks(data.getAllTask);
     },[data]);
-
+    
     return (
         <div>
             <table>
@@ -31,16 +31,20 @@ function GetAllTask()
                         <tr>
                             <td>
                                 <input type="checkbox" 
-                                checked={val.completed} onChange={(e)=>{
-                                    updateTask({
-                                        variables: {
-                                            id: val.id,
-                                            task:val.task,
-                                            completed: Boolean(!e.target.value)
-                                        }
-                                    })
-                                    e.target.checked = !e.target.checked;
-                                }}/>
+                                checked={val.completed} 
+                                onChange={(e)=>{e.target.checked = !e.target.checked}}
+                                //onChange={(e)=>{
+                                //     console.log(e.target.checked);
+                                //     updateTask({
+                                //         variables: {
+                                //             id: val.id,
+                                //             task:val.task,
+                                //             completed: Boolean(!e.target.value)
+                                //         }
+                                //     })
+                                //     e.target.checked = !e.target.checked;
+                                //}}
+                                />
                             </td>
                             <td>{val.task}</td>
                             <td>{val.createdOn}</td>

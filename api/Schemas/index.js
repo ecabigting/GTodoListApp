@@ -67,12 +67,13 @@ const Mutation = new GraphQLObjectType({
         },
         deleteTask:
         {
-            type:new GraphQLList(TaskType),
+            type: new GraphQLList(TaskType),
             args : {
                 id: {type : GraphQLInt}
             },
             resolve(parents,args)
             {
+                console.log("deleting id:" + args.id);
                 let newTD = taskData.filter(td => td.id != args.id); 
                 updateFile(newTD);
                 return newTD;
@@ -96,7 +97,6 @@ function updateFile(taskD)
 {
     fs.writeFile("./task_data.json", JSON.stringify(taskD,null,2),function(err){
       if(err)throw err;
-      console.log("Done Updating!");  
     });
 }
 

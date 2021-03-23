@@ -8,8 +8,7 @@ import {
   from
 } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
-import GetAllTask from './Components/GetAllTask';
-import NewTaskForm from './Components/NewTaskForm';
+import ToDoList from './Components/ToDoList';
 
 const errorLink = onError(({ graphQLErrors, networkError}) => {
   if(graphQLErrors) {
@@ -33,8 +32,7 @@ const aClient = new ApolloClient({
 function App() {
   return (<ApolloProvider client={aClient} >
     {" "}
-    <GetAllTask/>
-    <NewTaskForm/>
+    <ToDoList/>
   </ApolloProvider>);
 }
 

@@ -22,6 +22,9 @@ export const DELETE_TASK = gql`
         deleteTask(id : $id) 
         {
             id
+            task
+            completed
+            createdOn
         }
     }
 `;
