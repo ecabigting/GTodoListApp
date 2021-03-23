@@ -33,6 +33,16 @@ function ToDoList()
 
     const [DeleteTask] = useMutation(DELETE_TASK)
     const [UpdateTask] = useMutation(UPDATE_TASK)
+    const SortList = () => {
+        let tasksSort = tasks.sort(sortFunction)
+        setTasks(tasksSort);
+    }
+
+    function sortFunction(a: { date: string | number | Date; },b: { date: string | number | Date; }){  
+        var dateA = new Date(a.date).getTime();
+        var dateB = new Date(b.date).getTime();
+        return dateA > dateB ? 1 : -1;  
+    }; 
 
     return (
         <div>
@@ -41,7 +51,7 @@ function ToDoList()
                     <tr>
                         <td>Status</td>
                         <td>Task</td>
-                        <td>Created On</td>
+                        <td><a onClick={SortList}> Created On</a></td>
                         <td>Action</td>
                     </tr>
                 </thead>
@@ -55,7 +65,6 @@ function ToDoList()
                                     onChange={(e)=>{
                                         UpdateTask({
                                             update:(proxy,mutationResult)=>{
-                                                console.log(mutationResult)
                                                 setTasks(mutationResult.data.updateTask)
                                             },
                                             variables:{
