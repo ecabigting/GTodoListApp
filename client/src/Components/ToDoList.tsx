@@ -34,14 +34,16 @@ function ToDoList()
     const [DeleteTask] = useMutation(DELETE_TASK)
     const [UpdateTask] = useMutation(UPDATE_TASK)
     const SortList = () => {
-        let tasksSort = tasks.sort(sortFunction)
-        setTasks(tasksSort);
+        let tasksSort = [...tasks];
+        console.log("clicked");
+        setTasks(tasksSort.sort(sortFunction));
     }
 
-    function sortFunction(a: { date: string | number | Date; },b: { date: string | number | Date; }){  
-        var dateA = new Date(a.date).getTime();
-        var dateB = new Date(b.date).getTime();
-        return dateA > dateB ? 1 : -1;  
+    function sortFunction(a: { createdOn:Date; },b: { createdOn:Date; }){  
+        var dateA = new Date(a.createdOn).getTime();
+        var dateB = new Date(b.createdOn).getTime();
+        console.log(a);
+        return dateB > dateA ? 1 : -1;  
     }; 
 
     return (
